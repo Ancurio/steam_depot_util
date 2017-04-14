@@ -103,6 +103,10 @@ end
 
 depot = eval(File.read(ARGV[0]))
 
+if not depot.instance_of? Depot
+	raise "Definition file must return a Depot instance"
+end
+
 File.open(ARGV[1], "w") do |out|
 	ctx = WriteContext.new(out)
 	depot.write(ctx)
